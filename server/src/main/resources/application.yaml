@@ -1,0 +1,95 @@
+crafter:
+  profile:
+    folderPath: .
+    overrideLocation: file*:${crafter.profile.folderPath}/profile-services-context.xml
+    server:
+      port: 8967
+      contextPath:
+      log:
+        dir: ${crafter.profile.folderPath}/logs
+        name: social.log
+        accesslog:
+              enable: false
+    mongodb:
+      connection:
+        autoConnectRetry: true
+        connectionsPerHost: 100
+        maxWaitTime: 60000
+        socketKeepAlive: true
+        threadsAllowedToBlockForConnectionMultiplier: 4
+        connectTimeout: 10000
+        writeConcern: JOURNALED
+        readPreference: 1
+        connectionStr: "localhost:27017"
+        newConnectionStr: "mongodb://localhost:27017/crafterprofile?readPreference=primary&maxPoolSize=150&minPoolSize=50&maxIdleTimeMS=1000&waitQueueMultiple=200&waitQueueTimeoutMS=1000&w=1"
+        dbName: crafterprofile
+        scriptRunner:
+          withClient: false
+          clientPath: /usr/local/bin/mongo
+        dbUsername: ""
+        dbPassword: ""
+      scripts:
+        runOnInit: true
+        paths: "classpath:crafter/profile/init-data.js,classpath:crafter/profile/upgrade-db.js"
+    mail:
+      host: localhost
+      port: 25
+      protocol: smtp
+      username: ""
+      password: ""
+      encoding: UTF-8
+      smtp:
+        auth: false
+        starttls:
+          enable: false
+      templates:
+        path: "classpath:crafter/profile/mail/templates"
+    auth:
+      ticket:
+        maxAge: 900
+        cleaner:
+          startDelay: 0
+          repeatInterval: 30000
+      lockTime: 10
+      failedLoginAttemptsBeforeLock: 8
+      failedLoginAttemptsBeforeDelay: 2
+    verification:
+      token:
+        maxAge: 86400
+        cleaner:
+          startDelay: 0
+          repeatInterval: 30000
+      newProfile:
+        mail:
+          from: noreply@example.com
+          subject: "Verify Account"
+          templateName: verify-new-profile-email.ftl
+      resetPassword:
+        mail:
+          from: noreply@example.com
+          subject: "Reset Password"
+          templateName: reset-password-email.ftl
+    persistentLogin:
+      maxAge: 1296000
+      cleaner:
+        startDelay: 0
+        repeatInterval: 30000
+    task:
+      executor:
+        poolSize: 5-50
+        queueCapacity: 100
+    attachments:
+      maxSize: 100000
+      validMimeTypes: "image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/svg+xml"
+      maxSizeUpload: 5242880
+      maxSizeMem: 1048576
+
+server:
+  port: ${crafter.profile.server.port}
+  context-path: ${crafter.profile.server.contextPath}
+  undertow:
+    accesslog:
+      enabled: ${crafter.profile.server.log.accesslog.enable}
+      dir: ${crafter.profile.server.log.dir}
+logging:
+  file: ${crafter.profile.server.log.dir}/${crafter.profile.server.log.name}

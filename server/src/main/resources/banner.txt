@@ -1,0 +1,7 @@
+${AnsiColor.BRIGHT_RED}    _____            __ _               _____ __  __  _____       _____            __ _ _
+${AnsiColor.BRIGHT_RED}   / ____|          / _| |             / ____|  \/  |/ ____|     |  __ \          / _(_) |
+${AnsiColor.BRIGHT_RED}  | |     _ __ __ _| |_| |_ ___ _ __  | |    | \  / | (___ ______| |__) | __ ___ | |_ _| | ___
+${AnsiColor.BRIGHT_RED}  | |    | '__/ _` |  _| __/ _ \ '__| | |    | |\/| |\___ \______|  ___/ '__/ _ \|  _| | |/ _ \
+${AnsiColor.BRIGHT_RED}  | |____| | | (_| | | | ||  __/ |    | |____| |  | |____) |     | |   | | | (_) | | | | |  __/
+${AnsiColor.BRIGHT_RED}  \_____|_|  \__,_|_|  \__\___|_|     \_____|_|  |_|_____/      |_|   |_|  \___/|_| |_|_|\___|
+${AnsiStyle.BOLD}${AnsiStyle.ITALIC}${AnsiColor.BRIGHT_RED} ${application.title} ${application.version} ${AnsiColor.DEFAULT} ${AnsiStyle.NORMAL}

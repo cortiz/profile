@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.craftercms</groupId>
     <artifactId>crafter-profile-parent</artifactId>
-    <version>3.0.2-SNAPSHOT</version>
+    <version>3.1.0-SNAPSHOT</version>
     <name>Crafter Profile Parent POM</name>
     <description>Crafter Profile Parent POM</description>
     <packaging>pom</packaging>
@@ -13,6 +13,14 @@
         <name>CrafterCMS</name>
         <url>http://craftercms.org</url>
     </organization>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,7 +82,7 @@
         <module>client</module>
         <module>security-provider</module>
         <module>admin-console</module>
-        <module>integration-tests</module>
+       <!-- <module>integration-tests</module>--><!-- Cortiz: Need to be redone in spring-boot way-->
     </modules>
 
     <build>

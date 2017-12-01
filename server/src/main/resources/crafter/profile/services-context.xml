@@ -18,44 +18,13 @@
     <context:annotation-config/>
 
     <aop:aspectj-autoproxy/>
+    <context:property-placeholder file-encoding="UTF-8" />
 
     <task:annotation-driven executor="taskExecutor"/>
     <task:executor id="taskExecutor" pool-size="${crafter.profile.task.executor.poolSize}"
                    queue-capacity="${crafter.profile.task.executor.queueCapacity}"/>
 
     <bean id="crafter.loggedAspect" class="org.craftercms.commons.logging.LoggedAspect"/>
-
-    <bean name="crafter.profileProperties"
-          class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-        <!-- <property name="ignoreResourceNotFound" value="true"/> -->
-        <property name="locations">
-            <list>
-                <value>classpath:crafter/profile/server-config.properties</value>
-                <value>classpath*:crafter/profile/extension/server-config.properties</value>
-            </list>
-        </property>
-    </bean>
-
-    <!-- Mongo -->
-
-    <!--<bean id="crafter.mongoClientOptionsFactory" class="org.craftercms.commons.mongo.MongoClientOptionsFactory">-->
-    <!--<property name="autoConnectRetry" value="${crafter.profile.mongodb.connection.autoConnectRetry}"/>-->
-    <!--<property name="connectionsPerHost" value="${crafter.profile.mongodb.connection.connectionsPerHost}"/>-->
-    <!--<property name="maxAutoConnectRetryTime" value="${crafter.profile.mongodb.connection.maxWaitTime}"/>-->
-    <!--<property name="socketKeepAlive" value="${crafter.profile.mongodb.connection.socketKeepAlive}"/>-->
-    <!--<property name="threadsAllowedToBlockForConnectionMultiplier"-->
-    <!--value="${crafter.profile.mongodb.connection.threadsAllowedToBlockForConnectionMultiplier}"/>-->
-    <!--<property name="connectTimeout" value="${crafter.profile.mongodb.connection.connectTimeout}"/>-->
-    <!--<property name="writeConcern" value="${crafter.profile.mongodb.connection.writeConcern}"/>-->
-    <!--<property name="readPreference" value="${crafter.profile.mongodb.connection.readPreference}"/>-->
-    <!--</bean>-->
-
-
-    <!--<bean id="crafter.profile.mongoClient" class="org.craftercms.commons.mongo.MongoClientFactory">-->
-    <!--<property name="connectionString" value="${crafter.profile.mongodb.connection.connectionStr}"/>-->
-    <!--<property name="options" ref="crafter.mongoClientOptionsFactory"/>-->
-    <!--</bean>-->
 
     <bean id="crafter.profile.mongoClient" class="org.craftercms.commons.mongo.MongoClientFromUriFactoryBean">
         <property name="uri" value="${crafter.profile.mongodb.connection.newConnectionStr}"/>
